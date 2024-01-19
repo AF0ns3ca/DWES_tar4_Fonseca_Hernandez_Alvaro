@@ -50,7 +50,7 @@ class ParticipantController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $participants = new Participant();
+            $participants = Participant::find($id);
             $participants->nombre = $request->input('nombre');
             $participants->email = $request->input('email');
             $participants->save();

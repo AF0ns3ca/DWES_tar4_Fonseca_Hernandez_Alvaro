@@ -27,7 +27,8 @@ use App\Http\Controllers\EventParticipantController;
 //Ruta acciones user
 Route::apiResource('users', UserController::class);
 //Metodo delete user
-Route::delete('users/{id}', [UserController::class, 'destroy']);
+// Route::delete('users/{id}', [UserController::class, 'destroy']);
+
 
 //Ruta acciones user_detail
 Route::apiResource('user_details', UserDetailController::class);

@@ -50,7 +50,7 @@ class UserDetailController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $user_detail = new UserDetail();
+            $user_detail = UserDetail::find($id);
             $user_detail->user_id = $request->input('user_id');
             $user_detail->direccion = $request->input('direccion');
             $user_detail->telefono = $request->input('telefono');
