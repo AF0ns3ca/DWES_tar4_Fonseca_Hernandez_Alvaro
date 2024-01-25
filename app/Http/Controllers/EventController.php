@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Participant;
 
 
 class EventController extends Controller
@@ -77,5 +78,34 @@ class EventController extends Controller
             $events->delete();
             return response()->json(['message' => 'events eliminado'], 200);
         } 
+    }
+
+    //Metodo attachParticipant y detachParticipant que sirven para unir esas dos tablas en la tabla pivot event_participant, se podria hacer aqui on en participant ya que la relacion es muchos a muchos
+    public function attachParticipant($eventID, $participantID){
+        $events = Event::find($eventID);
+        $participant = Participant::find($participantID);
+
+        if(!$events || !$participant){
+            return response()->json(['message' => 'El events o el participant no está'], 404);
+        }
+        else{
+            $events->participants()->attach($participantID);
+            return response()->json(['message' => 'El participant se ha añadido al events'], 200);
+        }
+        
+    }
+
+    public function detachParticipant(Request $request, $eventID, $participantID){
+        $events = Event::find($eventID);
+        $participant = Participant::find($participantID);
+
+        if(!$events || !$participant){
+            return response()->json(['message' => 'El events o el participant no está'], 404);
+        }
+        else{
+            $events->participants()->detach($participantID);
+            return response()->json(['message'=>'El participante se ha borrado del evento'], 200);
+        }
+        
     }
 }

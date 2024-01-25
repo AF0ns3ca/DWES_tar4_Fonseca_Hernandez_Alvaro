@@ -45,3 +45,13 @@ Route::apiResource('events', EventController::class);
 //Ruta acciones event_participant
 Route::apiResource('event_participants', EventParticipantController::class);
 
+//Ruta para agregar un participante a un evento
+//Ejemplo de llamada a la ruta: http://localhost:8000/api/events/1/participants/1
+Route::post('/events/{event}/participants/{participant}', 
+[EventController::class, 'attachParticipant']);
+
+//Ruta para eliminar un participante de un evento
+//Ejemplo de llamada a la ruta: http://localhost:8000/api/events/1/participants/1
+Route::delete('/events/{event}/participants/{participant}',
+[EventController::class, 'detachParticipant']);
+

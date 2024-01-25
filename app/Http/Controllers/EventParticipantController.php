@@ -16,22 +16,6 @@ class EventParticipantController extends Controller
         return response()->json($event_participant);
     }
 
-    //Metodo store
-    public function store(Request $request)
-    {
-        try{
-            $event_participant = new EventParticipant();
-            $event_participant->event_id = $request->input('event_id');
-            $event_participant->participant_id = $request->input('participant_id');
-            $event_participant->save();
-
-            return response()->json($event_participant,201);
-
-        } catch (\Exception $e){    
-            return response()->json(['error' => 'Error'], 500);
-        }
-    }
-
     //Metodo show
     public function show($id)
     {
@@ -46,31 +30,18 @@ class EventParticipantController extends Controller
     }
 
     //Metodo update
-    public function update(Request $request, $event_id, $participant_id)
-    {
-        try{
-            $event_participant = EventParticipant::find($event_id, $participant_id);
-            $event_participant->event_id = $request->input('event_id');
-            $event_participant->participant_id = $request->input('participant_id');
-            $event_participant->save();
+    // public function update(Request $request, $event_id, $participant_id)
+    // {
+    //     try{
+    //         $event_participant = EventParticipant::find($event_id, $participant_id);
+    //         $event_participant->event_id = $request->input('event_id');
+    //         $event_participant->participant_id = $request->input('participant_id');
+    //         $event_participant->save();
 
-            return response()->json($event_participant, 200);
+    //         return response()->json($event_participant, 200);
 
-        } catch (\Exception $e){    
-            return response()->json(['error' => 'Error'], 500);
-        }
-    }
-
-    //Metodo destroy
-    public function destroy ($event_id, $participant_id) {
-        $event_participant = EventParticipant::find($event_id, $participant_id);
-
-        if(!$event_participant){
-            return response()->json(['message' => 'El organizers no está'], 404);
-        }
-        else{
-            $event_participant->delete();
-            return response()->json(['message' => 'organizers eliminado'], 200);
-        } 
-    }
+    //     } catch (\Exception $e){    
+    //         return response()->json(['error' => 'Error'], 500);
+    //     }
+    // }
 }
