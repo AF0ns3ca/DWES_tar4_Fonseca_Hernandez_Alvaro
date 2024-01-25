@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('organizer_id');
-            $table->foreign('organizer_id')->references('id')->on('organizers');
+            $table->foreign('organizer_id')->references('id')->on('organizers') ->onDelete('cascade');
             $table->string('nombre_evento');
-            $table->date('fecha');
+            $table->datetime('fecha');
             $table->string('ubicacion');
             $table->timestamps();
         });

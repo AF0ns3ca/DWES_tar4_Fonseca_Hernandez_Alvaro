@@ -21,6 +21,11 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         try{
+            //Validaciones
+            $request->validate([
+                'nombre' => 'required|string',
+                'email' => 'required|string'
+            ]);
             $participants = new Participant();
             $participants->nombre = $request->input('nombre');
             $participants->email = $request->input('email');
@@ -50,6 +55,11 @@ class ParticipantController extends Controller
     public function update(Request $request, $id)
     {
         try{
+            //Validaciones
+            $request->validate([
+                'nombre' => 'required',
+                'email' => 'required'
+            ]);
             $participants = Participant::find($id);
             $participants->nombre = $request->input('nombre');
             $participants->email = $request->input('email');

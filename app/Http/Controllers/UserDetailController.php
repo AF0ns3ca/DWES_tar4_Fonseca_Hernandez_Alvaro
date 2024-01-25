@@ -20,6 +20,12 @@ class UserDetailController extends Controller
     public function store(Request $request)
     {
         try{
+            //Validaciones
+            // $request->validate([
+            //     'user_id' => 'required',
+            //     'direccion' => 'required',
+            //     'telefono' => 'required'
+            // ]);
             $user_detail = new UserDetail();
             $user_detail->user_id = $request->input('user_id');
             $user_detail->direccion = $request->input('direccion');
@@ -50,6 +56,12 @@ class UserDetailController extends Controller
     public function update(Request $request, $id)
     {
         try{
+            //Validaciones
+            $request->validate([
+                'user_id' => 'required',
+                'direccion' => 'required',
+                'telefono' => 'required'
+            ]);
             $user_detail = UserDetail::find($id);
             $user_detail->user_id = $request->input('user_id');
             $user_detail->direccion = $request->input('direccion');

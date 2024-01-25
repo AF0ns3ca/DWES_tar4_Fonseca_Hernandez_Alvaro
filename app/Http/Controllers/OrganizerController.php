@@ -20,6 +20,11 @@ class OrganizerController extends Controller
     public function store(Request $request)
     {
         try{
+            //Validaciones
+            $request->validate([
+                'nombre' => 'required|string',
+                'contacto' => 'required|string'
+            ]);
             $organizers = new Organizer();
             $organizers->nombre = $request->input('nombre');
             $organizers->contacto = $request->input('contacto');
@@ -49,6 +54,11 @@ class OrganizerController extends Controller
     public function update(Request $request, $id)
     {
         try{
+            //Validaciones
+            $request->validate([
+                'nombre' => 'required|string',
+                'contacto' => 'required|string'
+            ]);
             $organizers = Organizer::find($id);
             $organizers->nombre = $request->input('nombre');
             $organizers->contacto = $request->input('contacto');

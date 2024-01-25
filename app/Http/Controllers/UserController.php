@@ -20,6 +20,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try{
+            //Validaciones
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required'
+            ]);
             $users = new User();
             $users->name = $request->input('name');
             $users->email = $request->input('email');
@@ -46,33 +52,16 @@ class UserController extends Controller
         }
     }
 
-    //Metodo update
-    // public function update(Request $request, string $id)
-    // {
-    //     try{
-    //         $user = User::findOrFail($id);
-    //         // $user->name = $request->input('name');
-    //         // $user->email = $request->input('email');
-    //         // $user->password = $request->input('password'); 
-    //         $validatedData = $request->validate([
-    //             'name' => 'required|max:255',
-    //             'email' => 'required|email|unique:users,email,'.$user->id,
-    //             'password' => 'required',
-    //         ]);
-
-    //         $user->update($validatedData);
-
-    //         return response()->json($user, 200);
-
-    //     } catch (\Exception $e){    
-    //         return response()->json(['error' => 'Error'], 500);
-    //     }
-    // }
-
     //CUIDADO QUE SI MODIFICAS UNO CON UN EMAIL QUE YA ESTE EN LA BASE DE DATOS DE OTRO USUARIO NO VA A DEJAR
     public function update(Request $request, string $id)
     {
         try{
+            //Validaciones
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required'
+            ]);
             $user = User::findOrFail($id);
             $user->name = $request->input('name');
             $user->email = $request->input('email');

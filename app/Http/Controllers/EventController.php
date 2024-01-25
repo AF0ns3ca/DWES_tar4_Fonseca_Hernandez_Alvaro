@@ -22,6 +22,13 @@ class EventController extends Controller
     public function store(Request $request)
     {
         try{
+            //Validaciones
+            // $request->validate([
+            //     'organizer_id' => 'required|bigInteger',
+            //     'nombre_evento' => 'required|string',
+            //     'fecha' => 'required|date',
+            //     'ubicacion' => 'required|string'
+            // ]);
             $events = new Event();
             $events->organizer_id = $request->input('organizer_id');
             $events->nombre_evento = $request->input('nombre_evento');
@@ -53,8 +60,16 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $events = new Event();
-            $events->oragnizer_id = $request->input('oragnizer_id');
+
+            //Validaciones
+            // $request->validate([
+            //     'organizer_id' => 'required',
+            //     'nombre_evento' => 'required|string',
+            //     'fecha' => 'required|datetime',
+            //     'ubicacion' => 'required|string'
+            // ]);
+            $events = Event::find($id);
+            $events->organizer_id = $request->input('organizer_id');
             $events->nombre_evento = $request->input('nombre_evento');
             $events->fecha = $request->input('fecha');
             $events->ubicacion = $request->input('ubicacion');
