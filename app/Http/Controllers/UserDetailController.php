@@ -21,11 +21,11 @@ class UserDetailController extends Controller
     {
         try{
             //Validaciones
-            // $request->validate([
-            //     'user_id' => 'required',
-            //     'direccion' => 'required',
-            //     'telefono' => 'required'
-            // ]);
+            $request->validate([
+                'user_id' => 'required|integer',
+                'direccion' => 'required|string',
+                'telefono' => 'required|string'
+            ]);
             $user_detail = new UserDetail();
             $user_detail->user_id = $request->input('user_id');
             $user_detail->direccion = $request->input('direccion');
@@ -58,9 +58,9 @@ class UserDetailController extends Controller
         try{
             //Validaciones
             $request->validate([
-                'user_id' => 'required',
-                'direccion' => 'required',
-                'telefono' => 'required'
+                'user_id' => 'required|integer',
+                'direccion' => 'required|string',
+                'telefono' => 'required|string'
             ]);
             $user_detail = UserDetail::find($id);
             $user_detail->user_id = $request->input('user_id');

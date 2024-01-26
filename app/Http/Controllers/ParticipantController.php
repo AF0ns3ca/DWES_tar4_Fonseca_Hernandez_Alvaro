@@ -57,8 +57,8 @@ class ParticipantController extends Controller
         try{
             //Validaciones
             $request->validate([
-                'nombre' => 'required',
-                'email' => 'required'
+                'nombre' => 'required|string',
+                'email' => 'required|string'
             ]);
             $participants = Participant::find($id);
             $participants->nombre = $request->input('nombre');

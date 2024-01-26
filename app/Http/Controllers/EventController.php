@@ -23,12 +23,12 @@ class EventController extends Controller
     {
         try{
             //Validaciones
-            // $request->validate([
-            //     'organizer_id' => 'required|bigInteger',
-            //     'nombre_evento' => 'required|string',
-            //     'fecha' => 'required|date',
-            //     'ubicacion' => 'required|string'
-            // ]);
+            $request->validate([
+                'organizer_id' => 'required|integer',
+                'nombre_evento' => 'required|string',
+                'fecha' => 'required|date',
+                'ubicacion' => 'required|string'
+            ]);
             $events = new Event();
             $events->organizer_id = $request->input('organizer_id');
             $events->nombre_evento = $request->input('nombre_evento');
@@ -62,12 +62,12 @@ class EventController extends Controller
         try{
 
             //Validaciones
-            // $request->validate([
-            //     'organizer_id' => 'required',
-            //     'nombre_evento' => 'required|string',
-            //     'fecha' => 'required|datetime',
-            //     'ubicacion' => 'required|string'
-            // ]);
+            $request->validate([
+                'organizer_id' => 'required|integer',
+                'nombre_evento' => 'required|string',
+                'fecha' => 'required|date',
+                'ubicacion' => 'required|string'
+            ]);
             $events = Event::find($id);
             $events->organizer_id = $request->input('organizer_id');
             $events->nombre_evento = $request->input('nombre_evento');
@@ -110,7 +110,7 @@ class EventController extends Controller
         
     }
 
-    public function detachParticipant(Request $request, $eventID, $participantID){
+    public function detachParticipant($eventID, $participantID){
         $events = Event::find($eventID);
         $participant = Participant::find($participantID);
 

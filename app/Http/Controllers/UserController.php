@@ -22,9 +22,9 @@ class UserController extends Controller
         try{
             //Validaciones
             $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required'
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string'
             ]);
             $users = new User();
             $users->name = $request->input('name');
@@ -58,9 +58,9 @@ class UserController extends Controller
         try{
             //Validaciones
             $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required'
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string'
             ]);
             $user = User::findOrFail($id);
             $user->name = $request->input('name');
